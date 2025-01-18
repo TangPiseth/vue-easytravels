@@ -2,42 +2,45 @@
   <div class="container-fluid p-0 bg-light EG-Default">
     <!-- Hero Section -->
     <section>
-    <div class="headmast position-relative d-flex align-items-center justify-content-center text-white vh-100 mb-5">
-      <swiper :autoplay="{ delay: 2000, disableOnInteraction: false }" :loop="true"
-        modules="[Autoplay, Pagination, Navigation]"
-        class="headmast position-relative d-flex align-items-center justify-content-center text-white vh-100 mb-5">
-        <swiper-slide v-for="(slide, index) in slides" :key="index"
-          class="image-container d-flex align-items-center justify-content-center">
-          <img :src="slide.image" class="hero-banner position-absolute w-100 h-100" alt="" />
-          <div class="black-overlay"></div>
-          <div class="banner-txt position-relative z-3 text-center col-lg-8 col-md-10 col-sm-12 px-3">
-            <h2 class="display-4 py-3 fw-bolder fs-1" style="text-shadow: #000 1px 0 10px">
-              {{ slide.header }}
-            </h2>
-            <hr class="text-white mx-auto" style="width: 50%" />
-            <h1 class="display-2 pb-3 fw-bold pt-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8)">
-              {{ slide.title }}
-            </h1>
-            <hr class="text-white mx-auto" style="width: 50%" />
-            <p class="fs-5 mt-4" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6)">
-              {{ slide.text }}
-            </p>
-          </div>
-        </swiper-slide>
-      </swiper>
-    </div>
-  </section>
+      <div class="headmast position-relative d-flex align-items-center justify-content-center text-white vh-100 mb-5">
+        <swiper :autoplay="{ delay: 2000, disableOnInteraction: false }" :loop="true"
+          modules="[Autoplay, Pagination, Navigation]"
+          class="headmast position-relative d-flex align-items-center justify-content-center text-white vh-100 mb-5">
+          <swiper-slide v-for="(slide, index) in slides" :key="index"
+            class="image-container d-flex align-items-center justify-content-center">
+            <img :src="slide.image" class="hero-banner position-absolute w-100 h-100" alt="" />
+            <div class="black-overlay"></div>
+            <div class="banner-txt position-relative z-3 text-center col-lg-8 col-md-10 col-sm-12 px-3">
+              <h2 class="display-4 py-3 fw-bolder fs-1" style="text-shadow: #000 1px 0 10px">
+                {{ slide.header }}
+              </h2>
+              <hr class="text-white mx-auto" style="width: 50%" />
+              <h1 class="display-2 pb-3 fw-bold pt-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8)">
+                {{ slide.title }}
+              </h1>
+              <hr class="text-white mx-auto" style="width: 50%" />
+              <p class="fs-5 mt-4" style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6)">
+                {{ slide.text }}
+              </p>
+            </div>
+          </swiper-slide>
+        </swiper>
+      </div>
+    </section>
 
     <!-- Our Services -->
     <section class="py-5 bg-blue popular-place">
-      <div class="container-fluid ps-xl-5 ps-lg-3 pe-xl-5 pe-lg-3">
-        <div class="row g-3 ps-xl-4 ps-0 pe-xl-3 pe-0">
-          <h2 class="display-5 fw-bold mb-4">Top Destinations</h2>
-          <div v-for="(item, index) in items" :key="index" :class="getColClass(index)">
+    <div class="container-fluid ps-xl-5 ps-lg-3 pe-xl-5 pe-lg-3">
+      <div class="row g-3 ps-xl-4 ps-0 pe-xl-3 pe-0">
+        <h2 class="display-5 fw-bold mb-4">Top Destinations</h2>
+        <div v-for="(item, index) in items" :key="index" :class="getColClass(index)">
+          <router-link 
+            :to="getRouterLink(item)"
+            class="text-decoration-none"
+          >
             <div class="card border-0 bg-transparent">
               <div class="popular-place-img position-relative">
                 <img :src="item.image" alt="Service Image" class="service-image" />
-                <a href="#" class="stretched-link"></a>
                 <div class="overlay"></div>
                 <div class="rating">
                   <span class="m-0 me-1 rating-star">
@@ -46,7 +49,7 @@
                   <span class="m-0 rating-number">4.8</span>
                 </div>
                 <div class="save">
-                  <a href="#"><i class="fa-regular fa-bookmark"></i></a>
+                  <i class="fa-regular fa-bookmark"></i>
                 </div>
                 <div class="place text-start">
                   <span class="m-0 mb-2">{{ item.title }}</span>
@@ -55,14 +58,15 @@
                   </p>
                 </div>
                 <div class="read-more">
-                  <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+                  <i class="fa-solid fa-arrow-right"></i>
                 </div>
               </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- Why Choose Us Section -->
     <section class="py-5 bg-light">
@@ -169,7 +173,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -182,15 +185,15 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 export default {
-    components: {
-      Swiper,
-      SwiperSlide,
-    },
-    setup() {
-      return {
-        modules: [Autoplay, Pagination, Navigation],
-      };
-    },
+  components: {
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    return {
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
   data() {
     return {
       items: [
@@ -276,42 +279,70 @@ export default {
         },
       ],
 
-      hotels: [
+      items: [
         {
-          id: 1,
-          name: "Sokha Hotel",
-          rating: 4,
-          originalPrice: 150,
-          discountedPrice: 75,
-          views: 320,
-          image: require("@/assets/img/sokha.jpg"),
+          id: 29,
+          title: "Bayon Temple",
+          text: "Siem Reap",
+          category: "temple",
+          image: require("@/assets/img/bayon.jpg"),
+          type: "tourist"
+        },
+        {
+          id: 9,
+          title: "Koh Kong Krav",
+          text: "Koh Kong",
+          category: "beach",
+          image: require("@/assets/img/kohkongkrav.jpg"),
+          type: "province"
+        },
+        {
+          id: 16,
+          title: "Seahorse",
+          text: "Kompot",
+          category: "beach",
+          image: require("@/assets/img/seahorse.jpg"),
+          type: "province"
         },
         {
           id: 2,
-          name: "HOTEL KVL",
-          rating: 3,
-          originalPrice: 150,
-          discountedPrice: 75,
-          views: 450,
-          image: require("@/assets/img/kvl.jpg"),
+          title: "Berng Mea Lea",
+          text: "Siem Reap",
+          category: "temple",
+          image: require("@/assets/img/mealea.jpg"),
+          type: "province"
+        },
+        {
+          id: 35,
+          title: "Ochheu Teal Beach",
+          text: "Sihanoukville",
+          category: "beach",
+          image: require("@/assets/img/orcher.jpg"),
+          type: "beach"
+        },
+        {
+          id: 39,
+          title: "Kulen Mountain",
+          text: "Siem Reap",
+          category: "mountain",
+          image: require("@/assets/img/kuleb.jpg"),
+          type: "mountain"
+        },
+        {
+          id: 26,
+          title: "Angkor Wat",
+          text: "Siem Reap",
+          category: "temple",
+          image: require("@/assets/img/angkorwat.jpg"),
+          type: "temple"
         },
         {
           id: 3,
-          name: "TEMPLATION HOTEL",
-          rating: 3,
-          originalPrice: 150,
-          discountedPrice: 75,
-          views: 890,
-          image: require("@/assets/img/templation.jpg"),
-        },
-        {
-          id: 4,
-          name: "G MEKONG HOTEL",
-          rating: 4,
-          originalPrice: 150,
-          discountedPrice: 75,
-          views: 90,
-          image: require("@/assets/img/mekong.jpg"),
+          title: "Wat Banan",
+          text: "Battambong",
+          category: "temple",
+          image: require("@/assets/img/banan.jpg"),
+          type: "province"
         },
       ],
     };
@@ -322,6 +353,24 @@ export default {
         ? "col-xl-3 col-lg-6 col-md-4 col-12"
         : "col-xl-3 col-lg-6 col-md-4 col-12";
     },
+    getRouterLink(item) {
+      if (item.type === 'tourist') {
+        return {
+          name: 'SiteDetail',
+          params: {
+            id: item.id,
+            category: item.category
+          }
+        };
+      } else {
+        return {
+          name: 'ProvinceDetail',
+          params: {
+            id: item.id
+          }
+        };
+      }
+    }
   },
 };
 </script>
@@ -612,13 +661,15 @@ ul.list-unstyled li i {
 .btn-sm {
   padding: 5px 10px;
 }
+
 .image-container {
   position: relative;
   display: inline-block;
 }
 
 .hero-banner {
-  display: block; /* keeps the img's default block-level behavior */
+  display: block;
+  /* keeps the img's default block-level behavior */
 }
 
 .black-overlay {
@@ -628,8 +679,9 @@ ul.list-unstyled li i {
   width: 100%;
   height: 100%;
   background-color: black;
-  opacity: 0.3; /* Adjust this value to make the black filter darker or lighter */
-  pointer-events: none; /* Allows clicking through the overlay */
+  opacity: 0.3;
+  /* Adjust this value to make the black filter darker or lighter */
+  pointer-events: none;
+  /* Allows clicking through the overlay */
 }
-
 </style>
