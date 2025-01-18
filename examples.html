@@ -1,0 +1,25 @@
+import { createApp } from 'vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+import 'swiper/swiper-bundle.css';
+
+// Install modules
+SwiperCore.use([Autoplay, Pagination, Navigation]);
+
+const app = createApp({
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  data() {
+    return {
+      slides: [
+        { image: 'image1.jpg', header: 'Header 1', title: 'Title 1', text: 'Text 1' },
+        { image: 'image2.jpg', header: 'Header 2', title: 'Title 2', text: 'Text 2' },
+        // Add more slides as needed
+      ]
+    };
+  }
+});
+
+app.mount('#app');
