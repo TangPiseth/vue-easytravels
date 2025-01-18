@@ -170,44 +170,6 @@
       </div>
     </div>
 
-    <!-- Special Offers -->
-    <section class="py-5 bg-light">
-      <div class="container bg-dark-subtle p-5 rounded">
-        <div class="row">
-          <!-- Promotional Box -->
-          <div class="col-md-4">
-            <div class="promo-box text-start bg-dark text-white p-4 rounded">
-              <h2>Best Hotels with high ratings</h2>
-              <p>Start your journey in Cambodia today with these discounted prices!!</p>
-            </div>
-          </div>
-          <!-- Hotel List -->
-          <div class="col-md-8">
-            <div class="hotel-list">
-              <div class="hotel-item d-flex mb-3 p-2 rounded bg-dark text-white" v-for="hotel in hotels"
-                :key="hotel.id">
-                <div class="hotel-image">
-                  <img :src="hotel.image" class="rounded" alt="hotel image" style="width: 100px; height: 100px" />
-                </div>
-                <div class="hotel-info ml-3">
-                  <h3>{{ hotel.name }}</h3>
-                  <div class="hotel-rating mb-2">
-                    <span v-for="n in hotel.rating" :key="n" class="star">★</span>
-                  </div>
-                  <div class="hotel-pricing">
-                    <span class="original-price text-danger mr-2">{{ hotel.originalPrice }}$</span>
-                    <span class="discounted-price text-warning p-1">{{ hotel.discountedPrice }}$</span>
-                  </div>
-                  <div class="hotel-meta mt-2">
-                    <span class="view-count mr-3"><i class="fa-solid fa-eye"></i> {{ hotel.views }}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
